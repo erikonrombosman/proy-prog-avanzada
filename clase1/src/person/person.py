@@ -28,7 +28,7 @@ class Person:
     def talk_about_your_dogs(self):
         """say all your dogs name
         """
-        word = 'My dogs are: '
+        word = f"My name is {self.name} and my dogs are: "
         for dog in self.dogs:
             word += f"{dog.name} "
         word += 'y los quiero mucho'
