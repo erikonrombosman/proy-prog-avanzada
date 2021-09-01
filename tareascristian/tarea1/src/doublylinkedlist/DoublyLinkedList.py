@@ -187,12 +187,6 @@ class DoublyLinkedList:
         current: DoublyLinkedListItem = self.first
         if self.first is not None:
             while True:
-                """
-                if current.get_next() == self.first:
-                    salida += str(current.get_dato())
-                else:
-                    salida += str(current.get_dato()) + ", "
-                """
                 salida += str(current.get_dato()
                               ) if current.get_next() == self.first else str(current.get_dato()) + ", "
                 current = current.get_next()
