@@ -187,11 +187,13 @@ class DoublyLinkedList:
         current: DoublyLinkedListItem = self.first
         if self.first is not None:
             while True:
+
                 salida += str(current.get_dato()
                               ) if current.get_next() == self.first else str(current.get_dato()) + ", "
                 current = current.get_next()
                 if current.get_next() == self.first.get_next():
                     break
+
         salida += "]"
         return salida
 
