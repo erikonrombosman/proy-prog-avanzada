@@ -7,11 +7,18 @@ class DoublyLinkedList:
     cant: int
 
     def __init__(self) -> None:
+        """ Create an intance of DoublyLinkedList
+        """
         self.cant = 0
         self.last = None
         self.first = None
 
     def add_first(self, dato: object) -> None:
+        """ Insert the first element in the list
+
+        Args:
+            dato: object to insert
+        """
         nuevo = DoublyLinkedListItem(dato)
         if self.is_emtpy():
             self.first = nuevo
@@ -30,6 +37,11 @@ class DoublyLinkedList:
             self.cant += 1
 
     def add_last(self, dato: object) -> None:
+        """ Insert the last element in the list
+
+        Args:
+            dato: object to insert
+        """
         nuevo = DoublyLinkedListItem(dato)
         if self.is_emtpy():
             self.first = nuevo
@@ -48,6 +60,12 @@ class DoublyLinkedList:
             self.cant += 1
 
     def add_after(self, dato: object, dato_after: object) -> None:
+        """ Insert an element in the list after the given dato
+
+        Args:
+            dato: given dato
+            dato_after: object to insert
+        """
         if self.get(self.contains(dato)) == self.last:
             self.add_last(dato_after)
 
@@ -69,6 +87,12 @@ class DoublyLinkedList:
                 self.cant += 1
 
     def add_before(self, dato: int, dato_before: object) -> None:
+        """ Insert an element in the list before the given dato
+
+        Args:
+            dato: given dato
+            dato_after: object to insert
+        """
         if self.get(self.contains(dato)) == self.last:
             self.add_last(dato_before)
 
@@ -90,6 +114,11 @@ class DoublyLinkedList:
                 self.cant += 1
 
     def clear(self) -> bool:
+        """ Remove all items from the list
+
+        Return:
+            True if all items were removed
+        """
         if not self.is_emtpy():
             self.first = None
             self.last = None
@@ -99,6 +128,15 @@ class DoublyLinkedList:
             return False
 
     def contains(self, dato: object) -> int:
+        """ Verifies if the entered data exists in the list
+
+        Args:
+            dato: object to check
+
+        Return:
+            Index of the element in the list or -1 if it doesn't exist
+        """
+
         current: DoublyLinkedListItem = self.first
         existe: bool = False
         indice: int = 0
@@ -116,6 +154,15 @@ class DoublyLinkedList:
             return -1
 
     def get(self, i: int) -> DoublyLinkedListItem:
+        """ Returns an element corresponding to the indicated index 
+
+        Args:
+            i: int index of the item
+
+        Return:
+            DoublyLinkedListItem type element corresponding to the indicated index
+        """
+
         if i < 0 or i >= self.cant:
             return None
 
@@ -130,9 +177,24 @@ class DoublyLinkedList:
         return None
 
     def size(self) -> int:
+        """ Returns the size of the list
+
+        Return:
+            Size of the list 
+        """
+
         return self.cant
 
     def remove(self, dato: object) -> bool:
+        """ Removes an item from the list according to the data entered
+
+        Args:
+            dato: object to remove from the list
+
+        Return:
+            returns true if the item was removed 
+        """
+
         current: DoublyLinkedListItem = self.first
         eliminar: DoublyLinkedListItem = None
         if self.first.get_dato() == dato:
@@ -162,6 +224,12 @@ class DoublyLinkedList:
             return False
 
     def remove_first(self) -> bool:
+        """ Removes the first item from the list
+
+        Return:    
+            True if the item was removed 
+        """
+
         if not self.is_emtpy():
             self.last.set_next(self.first.get_next())
             self.first.get_next().set_previous(self.last)
@@ -172,6 +240,11 @@ class DoublyLinkedList:
             return False
 
     def remove_last(self) -> bool:
+        """ Removes the last item from the list
+
+        Return:
+            True if the item was removed 
+        """
         if not self.is_emtpy():
             current_l: DoublyLinkedListItem = self.last.get_previous()
             self.first.set_previous(current_l)
@@ -183,17 +256,29 @@ class DoublyLinkedList:
             return False
 
     def __str__(self) -> str:
+        """ Convert list elements to string 
+
+        Return:
+            The elements of the list as a string 
+        """
         salida: str = "["
         current: DoublyLinkedListItem = self.first
         if self.first is not None:
             while True:
+
                 salida += str(current.get_dato()
                               ) if current.get_next() == self.first else str(current.get_dato()) + ", "
                 current = current.get_next()
                 if current.get_next() == self.first.get_next():
                     break
+
         salida += "]"
         return salida
 
     def is_emtpy(self) -> bool:
+        """ Check that the list is empty 
+
+        Return:
+            True if the number of elements in the list is 0 
+        """
         return self.cant == 0
